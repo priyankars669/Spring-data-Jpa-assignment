@@ -1,14 +1,13 @@
 package com.testpro.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
 @Entity
 @Table
 public class Customer {
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     private int id;
     private String name;

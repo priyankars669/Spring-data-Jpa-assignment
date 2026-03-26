@@ -14,8 +14,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @SpringBootTest
 public class CustomerDataApplicationTests {
 
-    
-
     @Autowired
     CustomerRepo _repository;
 
@@ -26,9 +24,8 @@ public class CustomerDataApplicationTests {
     @Test
     public void testCreate(){
         Customer c = new Customer();
-        c.setId(1);
-        c.setName("Priya");
-        c.setEmail("Priya@gmail.com");
+        c.setName("Parul");
+        c.setEmail("Parul@gmail.com");
         _repository.save(c);
     }
 
@@ -36,7 +33,7 @@ public class CustomerDataApplicationTests {
     public void testRead(){
         Customer c = _repository.findById(1).get();
         assertNotNull(c);
-        assertEquals("Pika",c.getName());
+        assertEquals("Prikesh",c.getName());
     }
 
     @Test
