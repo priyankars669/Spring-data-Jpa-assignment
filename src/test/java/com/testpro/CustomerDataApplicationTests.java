@@ -8,6 +8,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -47,5 +50,23 @@ public class CustomerDataApplicationTests {
     public void testDelete(){
         Customer c = _repository.findById(1).get();
         _repository.delete(c);
+    }
+
+    @Test
+    public void testFindByEmailAndName(){
+        List<Customer> c = _repository.findByEmailAndName("Parul@gmail.com","Parul");
+        c.forEach(c1-> System.out.println(c1.getId()+" "+c1.getName()));
+    }
+
+    @Test
+    public void testFindByEmailLike(){
+        List<Customer> c = _repository.findByEmailLike("%.com%");
+        c.forEach(c1-> System.out.println(c1.getId()+" "+c1.getName()+" "+c1.getEmail()));
+    }
+
+    @Test
+    public void testFindByIdIn(){
+        List<Customer> c = _repository.findByIdIn(Arrays.asList(1,2,3,4));
+        c.forEach(c1-> System.out.println(c1.getId()+" "+c1.getName()+" "+c1.getEmail()));
     }
 }

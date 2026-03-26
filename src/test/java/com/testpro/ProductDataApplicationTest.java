@@ -5,6 +5,7 @@ import com.testpro.entities.Product;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -22,9 +23,9 @@ public class ProductDataApplicationTest {
     @Test
     public void testCreate(){
         Product p = new Product();
-        p.setId(3);
-        p.setName("Priyanshu");
-        p.setDesc("Awesome");
+        p.setId(4);
+        p.setName("whirlpool");
+        p.setDesc("AC");
         p.setPrice(30d);
 
         _repository.save(p);
@@ -34,7 +35,7 @@ public class ProductDataApplicationTest {
     public void testRead(){
         Product p = _repository.findById(2).get();
         assertNotNull(p);
-        assertEquals("Priyanka",p.getName());
+        assertEquals("Samsung",p.getName());
     }
 
     @Test
@@ -48,6 +49,13 @@ public class ProductDataApplicationTest {
     public void testDelete(){
         Product p = _repository.findById(3).get();
         _repository.delete(p);
+    }
+
+    @Test
+    public void testFindByName(){
+        List<Product> products = _repository.findByName("whirlpool");
+        products.forEach(p-> System.out.println(p.getDesc()));
+
     }
 
 }
