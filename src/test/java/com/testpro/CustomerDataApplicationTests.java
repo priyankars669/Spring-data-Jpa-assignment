@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.sql.SQLOutput;
 import java.util.Arrays;
 import java.util.List;
 
@@ -68,5 +69,11 @@ public class CustomerDataApplicationTests {
     public void testFindByIdIn(){
         List<Customer> c = _repository.findByIdIn(Arrays.asList(1,2,3,4));
         c.forEach(c1-> System.out.println(c1.getId()+" "+c1.getName()+" "+c1.getEmail()));
+    }
+
+    @Test
+    public void updateEmailById(){
+        int id= _repository.updateEmailById(2, "priyanka@gmail.com");
+        System.out.println(id);
     }
 }
