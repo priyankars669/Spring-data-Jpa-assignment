@@ -1,14 +1,16 @@
 package com.testpro;
 
 import com.testpro.Repository.CustomerRepo;
-import com.testpro.Repository.ProductRepo;
 import com.testpro.entities.Customer;
-import com.testpro.entities.Product;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 
-import java.sql.SQLOutput;
+
+
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -28,7 +30,7 @@ public class CustomerDataApplicationTests {
     @Test
     public void testCreate(){
         Customer c = new Customer();
-        c.setName("Parul");
+        c.setName("harsh");
         c.setEmail("Parul@gmail.com");
         _repository.save(c);
     }
@@ -67,13 +69,14 @@ public class CustomerDataApplicationTests {
 
     @Test
     public void testFindByIdIn(){
-        List<Customer> c = _repository.findByIdIn(Arrays.asList(1,2,3,4));
+        List<Customer> c = _repository.findByIdIn(Arrays.asList(2,52,102,152),
+                PageRequest.of(0, 2, Sort.Direction.ASC, "id"));
         c.forEach(c1-> System.out.println(c1.getId()+" "+c1.getName()+" "+c1.getEmail()));
     }
 
     @Test
     public void updateEmailById(){
-        int id= _repository.updateEmailById(2, "priyanka@gmail.com");
+        int id= _repository.updateEmailById(2, "prikesh@gmail.com");
         System.out.println(id);
     }
 }
