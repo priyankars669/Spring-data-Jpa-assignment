@@ -1,6 +1,7 @@
 package com.testpro;
 
 import com.testpro.Repository.CustomerRepo;
+import com.testpro.entities.Address;
 import com.testpro.entities.Customer;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +31,9 @@ public class CustomerDataApplicationTests {
     @Test
     public void testCreate(){
         Customer c = new Customer();
-        c.setName("harsh");
+        c.setName("Parul");
         c.setEmail("Parul@gmail.com");
+        c.setAddress(new Address("203","siwan","bihar","India","841226"));
         _repository.save(c);
     }
 

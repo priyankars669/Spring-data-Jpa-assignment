@@ -7,9 +7,14 @@ import lombok.Data;
 @Entity
 @Table
 public class Customer {
+
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     private int id;
+
     private String name;
     private String email;
+
+    @Embedded
+    private Address address;
 }
